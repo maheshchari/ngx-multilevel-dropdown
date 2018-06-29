@@ -104,10 +104,14 @@ export class TreeviewComponent implements OnChanges {
     onAllCheckedChange() {
         const checked = this.allItem.checked;
         this.filterItems.forEach(item => {
-            item.setCheckedRecursive(checked);
-            if (item instanceof FilterTreeviewItem) {
-                item.updateRefChecked();
-            }
+            item.setSelectDropDown(checked);
+            /*
+                // Enable this to filter chilren level
+                item.setCheckedRecursive(checked);
+                if (item instanceof FilterTreeviewItem) {
+                    item.updateRefChecked();
+                }
+            */
         });
 
         this.raiseSelectedChange();
@@ -157,13 +161,16 @@ export class TreeviewComponent implements OnChanges {
         if (this.filterText !== '') {
             const filterItems: TreeviewItem[] = [];
             const filterText = this.filterText.toLowerCase();
-            this.items.forEach(item => {
+            this.filterItems = this.items.filter((item) => item.text.toLowerCase().indexOf(filterText) > -1);
+            /*
+                // to enable filter for children
+                this.items.forEach(item => {
                 const newItem = this.filterItem(item, filterText);
                 if (!isNil(newItem)) {
                     filterItems.push(newItem);
                 }
             });
-            this.filterItems = filterItems;
+            this.filterItems = filterItems; */
         } else {
             this.filterItems = this.items;
         }

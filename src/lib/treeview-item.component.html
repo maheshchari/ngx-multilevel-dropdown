@@ -1,8 +1,27 @@
-<div *ngIf="item" class="treeview-item">
+
+<li *ngIf="item" [class.dropdown-submenu]="item.children?.length > 0">
     <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{item: item, onCollapseExpand: onCollapseExpand, onCheckedChange: onCheckedChange}">
-    </ng-template>
-    <div *ngIf="!item.collapsed">
-        <ngx-treeview-item [config]="config" *ngFor="let child of item.children" [item]="child" [template]="template" (checkedChange)="onChildCheckedChange(child, $event)">
-        </ngx-treeview-item>
-    </div>
-</div>
+    </ng-template>   
+    
+    
+    <ul *ngIf="!item.collapsed && item.children?.length > 0" class="dropdown-menu" [ngStyle]="{'display': item.collapsed ? 'none' : 'block' }">
+        <div class="dropdown-filter">
+            <input class="form-control" [(ngModel)]="item.filterText"  type="text" placeholder="Filter" />
+        </div>
+
+        <div class="dropdown-footer-actions clearfix">
+            <label (click)="onSelectAll(item, selectAll)">
+                <input type="checkbox" #selectAll /> All
+            </label>
+        </div>
+
+        <ngx-treeview-item 
+            [config]="config" 
+            *ngFor="let child of getChildrenFilter(item)" 
+            [item]="child" 
+            [template]="template" 
+            (checkedChange)="onChildCheckedChange(child, $event)"></ngx-treeview-item>
+
+        
+    </ul>
+</li>

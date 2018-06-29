@@ -28,10 +28,6 @@
           <label *ngIf="config.hasAllCheckBox" class="form-check-label" (click)="item.checked = !item.checked; onCheckedChange()">
             {{i18n.getAllCheckboxText()}}
           </label>
-          <label *ngIf="config.hasCollapseExpand" class="pull-right form-check-label" (click)="onCollapseExpand()">
-            <i [title]="i18n.getTooltipCollapseExpandText(item.collapsed)" aria-hidden="true" class="fa" [class.fa-expand]="item.collapsed"
-              [class.fa-compress]="!item.collapsed"></i>
-          </label>
         </div>
       </div>
     </div>
@@ -44,8 +40,12 @@
 </div>
 <div [ngSwitch]="hasFilterItems">
   <div *ngSwitchCase="true" class="treeview-container" [style.max-height.px]="maxHeight">
-    <ngx-treeview-item *ngFor="let item of filterItems" [config]="config" [item]="item" [template]="itemTemplate || defaultItemTemplate"
-      (checkedChange)="onItemCheckedChange(item, $event)">
+    <ngx-treeview-item 
+        *ngFor="let item of filterItems" 
+        [config]="config" 
+        [item]="item" 
+        [template]="itemTemplate || defaultItemTemplate"
+        (checkedChange)="onItemCheckedChange(item, $event)">
     </ngx-treeview-item>
   </div>
   <div *ngSwitchCase="false" class="treeview-text">

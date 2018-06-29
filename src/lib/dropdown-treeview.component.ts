@@ -41,4 +41,19 @@ export class DropdownTreeviewComponent {
     onFilterChange(text: string) {
       this.filterChange.emit(text);
     }
+
+    onCollapseExpand(data: TreeviewItem) {
+        const selectedItem = this.items.filter(item => item.text === data.text);
+        if (selectedItem.length > 0) {
+            this.items.forEach(item => {
+                if (item.text === data.text) {
+                    item.collapsed = !data.collapsed;
+                } else {
+                    item.collapsed = true;
+                }
+            });
+        } else {
+            data.collapsed = !data.collapsed;
+        }
+    }
 }

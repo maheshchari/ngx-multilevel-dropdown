@@ -17,21 +17,9 @@ export class BookComponent implements OnInit {
         hasAllCheckBox: true,
         hasFilter: true,
         hasCollapseExpand: true,
-        decoupleChildFromParent: false,
+        decoupleChildFromParent: true,
         maxHeight: 400
     });
-
-    buttonClasses = [
-        'btn-outline-primary',
-        'btn-outline-secondary',
-        'btn-outline-success',
-        'btn-outline-danger',
-        'btn-outline-warning',
-        'btn-outline-info',
-        'btn-outline-light',
-        'btn-outline-dark'
-    ];
-    buttonClass = this.buttonClasses[0];
 
     constructor(
         private service: BookService
@@ -39,6 +27,10 @@ export class BookComponent implements OnInit {
 
     ngOnInit() {
         this.items = this.service.getBooks();
+    }
+
+    selectedOptions(event) {
+        this.values = event;
     }
 
     onFilterChange(value: string) {

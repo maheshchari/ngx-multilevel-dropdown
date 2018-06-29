@@ -8,10 +8,12 @@ export interface TreeviewSelection {
 
 export interface TreeItem {
     text: string;
+    hasFilter?: boolean;
     value: any;
     disabled?: boolean;
     checked?: boolean;
     collapsed?: boolean;
+    selectAll?: boolean;
     children?: TreeItem[];
 }
 
@@ -80,6 +82,10 @@ export class TreeviewItem {
                 this.internalChildren.forEach(child => child.setCheckedRecursive(value));
             }
         }
+    }
+
+    setSelectDropDown(value: boolean) {
+        this.internalChecked = value;
     }
 
     get disabled(): boolean {

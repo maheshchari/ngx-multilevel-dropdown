@@ -1,9 +1,11 @@
 :host {
-    display: block;
-    .treeview-item {
-        white-space: nowrap;
-        .treeview-item {
-            margin-left: 2rem;
-        }
-    }
+  display: block;
+  .treeview-item {
+    white-space: nowrap;
+  }
+
+  .dropdown-footer-actions {
+    border-bottom: solid 1px #efefef;
+  }
+
 }
