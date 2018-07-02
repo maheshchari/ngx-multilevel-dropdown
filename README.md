@@ -5,7 +5,7 @@
 
 # ngx-multilevel-dropdown
 
-An Angular treeview component with checkbox
+An Angular multi level dropdown component with checkbox
 
 ## Dependencies
 
