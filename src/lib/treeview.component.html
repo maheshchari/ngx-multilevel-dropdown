@@ -11,33 +11,45 @@
     </div>
   </div>
 </ng-template>
+
 <ng-template #defaultHeaderTemplate let-config="config" let-item="item" let-onCollapseExpand="onCollapseExpand" let-onCheckedChange="onCheckedChange"
   let-onFilterTextChange="onFilterTextChange">
+
   <div *ngIf="config.hasFilter" class="row row-filter">
     <div class="col-12">
-      <input class="form-control" type="text" [placeholder]="i18n.getFilterPlaceholder()" [(ngModel)]="filterText" (ngModelChange)="onFilterTextChange($event)"
-      />
+      <input class="form-control" 
+        type="text" 
+        [placeholder]="i18n.getFilterPlaceholder()" 
+        [(ngModel)]="filterText" 
+        (ngModelChange)="onFilterTextChange($event)" />
     </div>
   </div>
+
   <div *ngIf="hasFilterItems">
     <div *ngIf="config.hasAllCheckBox || config.hasCollapseExpand" class="row row-all">
       <div class="col-12">
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" [(ngModel)]="item.checked" (ngModelChange)="onCheckedChange()" [indeterminate]="item.indeterminate"
-          />
-          <label *ngIf="config.hasAllCheckBox" class="form-check-label" (click)="item.checked = !item.checked; onCheckedChange()">
-            {{i18n.getAllCheckboxText()}}
+        <div>          
+          <label *ngIf="config.hasAllCheckBox" (click)="item.checked = !item.checked; onCheckedChange()">
+            <input type="checkbox" 
+              [(ngModel)]="item.checked" 
+              (ngModelChange)="onCheckedChange()" 
+              [indeterminate]="item.indeterminate" />
+              {{i18n.getAllCheckboxText()}}
           </label>
         </div>
       </div>
     </div>
-    <div *ngIf="config.hasDivider" class="dropdown-divider"></div>
+    <div *ngIf="config.hasAllCheckBox || config.hasFilter" class="dropdown-divider"></div>
   </div>
+
 </ng-template>
+
 <div class="treeview-header">
-  <ng-template [ngTemplateOutlet]="headerTemplate || defaultHeaderTemplate" [ngTemplateOutletContext]="headerTemplateContext">
+  <ng-template [ngTemplateOutlet]="headerTemplate || defaultHeaderTemplate" 
+      [ngTemplateOutletContext]="headerTemplateContext">
   </ng-template>
 </div>
+
 <div [ngSwitch]="hasFilterItems">
   <div *ngSwitchCase="true" class="treeview-container" [style.max-height.px]="maxHeight">
     <ngx-treeview-item 

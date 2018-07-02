@@ -1,15 +1,15 @@
 
 <li *ngIf="item" [class.dropdown-submenu]="item.children?.length > 0">
+    
     <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{item: item, onCollapseExpand: onCollapseExpand, onCheckedChange: onCheckedChange}">
     </ng-template>   
-    
-    
+        
     <ul *ngIf="!item.collapsed && item.children?.length > 0" class="dropdown-menu" [ngStyle]="{'display': item.collapsed ? 'none' : 'block' }">
-        <div class="dropdown-filter">
+        <div class="dropdown-filter" *ngIf="config.hasFilter">
             <input class="form-control" [(ngModel)]="item.filterText"  type="text" placeholder="Filter" />
         </div>
 
-        <div class="dropdown-footer-actions clearfix">
+        <div class="dropdown-footer-actions clearfix" *ngIf="config.hasAllCheckBox">
             <label (click)="onSelectAll(item, selectAll)">
                 <input type="checkbox" #selectAll /> All
             </label>
@@ -21,7 +21,5 @@
             [item]="child" 
             [template]="template" 
             (checkedChange)="onChildCheckedChange(child, $event)"></ngx-treeview-item>
-
-        
     </ul>
 </li>
