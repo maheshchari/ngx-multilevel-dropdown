@@ -1,5 +1,5 @@
 {
-  "name": "ngx-treeview",
+  "name": "ngx-multilevel-dropdown",
   "version": "6.0.0",
   "license": "MIT",
   "description": "An Angular treeview component with checkbox",

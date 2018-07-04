@@ -31,10 +31,10 @@ import { TreeviewEventParser, DefaultTreeviewEventParser } from './treeview-even
         DropdownTreeviewComponent
     ]
 })
-export class TreeviewModule {
+export class MultiLevelDropDownModule {
     static forRoot(): ModuleWithProviders {
         return {
-            ngModule: TreeviewModule,
+            ngModule: MultiLevelDropDownModule,
             providers: [
                 TreeviewConfig,
                 { provide: TreeviewI18n, useClass: TreeviewI18nDefault },

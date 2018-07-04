@@ -1,4 +1,4 @@
-export * from './treeview.module';
+export * from './multilevel-dropdown.module';
 export * from './treeview.component';
 export * from './treeview.pipe';
 export * from './treeview-item';
